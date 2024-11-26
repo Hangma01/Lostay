@@ -1,0 +1,22 @@
+.nav--top--container {
+    position: fixed;
+    bottom: 72px;
+    width: 768px;
+    display: flex;
+    justify-content: end;
+
+    #nav_to_top {
+        padding: 2px;
+        border-style: solid;
+        border-radius: 100%;
+        border-width: 1px;
+        border-color: darkgray;
+        background-color: transparent;
+        color: darkgray;
+    }
+
+    #nav_to_top:hover {
+        border-color: gray;
+        color: gray;
+    }
+}

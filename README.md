@@ -11,7 +11,7 @@
 # :busts_in_silhouette: 팀원 구성 및 역할
 ### FrontEnd + BackEnd
   - 박정일
-  - 안효준 (본인)
+  - 안효준 (본인) - 로그인/회원가입, 마이페이지, 결제
   - 배교훈
 
 ### BackEnd

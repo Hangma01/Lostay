@@ -11,7 +11,7 @@
 # :busts_in_silhouette: 팀원 구성 및 역할
 ### FrontEnd + BackEnd
   - 박정일
-  - 안효준
+  - 안효준 (본인)
   - 배교훈
 
 ### BackEnd
@@ -65,7 +65,7 @@
 * * *
 <br><br>
 
-### 로그인
+### 로그인 (안효준 담당)
   - JWT + Oauth2 사용한 소셜 로그인
   - coolSms API 이용한 휴대폰 번호 인증
 
@@ -76,7 +76,7 @@
 * * *
 <br><br>
  
-### 결제
+### 결제 (안효준 담당)
   - 사전 검증, 사후 검증 단계를 거쳐 신뢰성과 무결성 확보
   - PortOne API 사용
   - Synchronize, Redis 사용하여 동시성 해결

@@ -8,29 +8,61 @@
 <br><br><br>
 
 
-# :busts_in_silhouette: 팀원 구성 및 역할
+# :busts_in_silhouette: 팀원 구성 및 역할 (5명)
 ### FrontEnd + BackEnd
+  - 안효준 (본인)
+
+    - 소셜 회원가입/로그인 페이지
+    - 마이 페이지
+    - 결제 페이지
+    - 메인 페이지
+    - 관리자 페이지
+      
+<br>      
+
   - 박정일
-  - 안효준 (본인) - 로그인/회원가입, 마이페이지, 결제
+
+    - 검색 페이지
+    - 관리자 페이지
+    - 이벤트 페이지
+
+<br>      
+
   - 배교훈
+    
+    - 길찾기 페이지,
+    - 호텔/객실 리스트 페이지 
+
+<br>
 
 ### BackEnd
   - 홍정훈
+    
+    - 마이 페이지
+    - 검색 페이지
+    - 메인 페이지
+    - 관리자 페이지
+   
+<br> 
+
   - 심재호
+    
+    - 결제 페이지,
+    - 호텔/객실 리스트 페이지 
 <br><br><br>
 
 
 # :seedling: 개발 환경
 ### FrontEnd
-- React, React-Router, Redux, CRA
+- React, React-Router, Redux, JavaScript
 
 
 ### Backend
 - Java11, SpringBoot, Spring Security, JPA, MySql 8.0, Redis
 
 
-### 협업 Tool
-- Github
+### Collaboration & Tools
+- Github, Jira, Figma, Postman
 
 ### ETC
 - Kakao Mobility API, Kakao Map API, TMap API, Elasticesearch API, ProtOne API, coolSms API, OAuth2(Google, Kakao, Naver)
@@ -41,48 +73,48 @@
 <img src="https://github.com/user-attachments/assets/bbf3b0bb-6ab3-48e5-90a5-8f22ae4fe6ed" width="100%" height="600"/>
 
 <br><br><br>
-# :dart: 메인 기능
+# :dart: 주요 기능
 
-### 로그인 (본인 담당)
-  - JWT + OAuth2 사용한 소셜 로그인
+### 간편 소셜 회원 가입/로그인 (본인 기여 100%)
+  - JWT + OAuth2 이용한 간편 소셜 로그인
   - coolSms API 이용한 휴대폰 번호 인증
 
     
 * * *
-<img src="https://github.com/user-attachments/assets/1e19b93b-33b2-41c7-bdac-d7ae9944b659" width="450" height="550"/>
+<img src="https://github.com/user-attachments/assets/1e19b93b-33b2-41c7-bdac-d7ae9944b659" width="350" height="450"/>
 
 * * *
 <br><br>
 
-### 결제 (본인 담당)
-  - 사전 검증, 사후 검증 단계를 거쳐 신뢰성과 무결성 확보
-  - PortOne API 사용
-  - Synchronize, Redis 사용하여 동시성 해결
-
-* * *
-<img src="https://github.com/user-attachments/assets/fa3ea8bc-2616-431b-9b5b-ea9bb439f143" width="450" height="550"/>
-
-* * *
-<br><br>
-
-### 길찾기
+### 길 찾기 기능으로 편리한 교통 정보 확인
   - Kakao + TMap API 이용한 길찾기
   - 자동차 + 도보 + 대중교통 선택 가능
   - 자동차 교통 혼잡도 폴리라인으로 표시
 
 * * *
-<img src="https://github.com/user-attachments/assets/cd1a1bd8-49be-4b75-a2d4-cfeae3bf6720" width="450" height="550"/>
+<img src="https://github.com/user-attachments/assets/cd1a1bd8-49be-4b75-a2d4-cfeae3bf6720" width="350" height="450"/>
 
 * * *
 <br><br>
   
-### 검색
+### Elasticsearch를 활용한 유연한 검색
   - 검색의 정확성과 단어 정제를 위한 Elasticesearch nori 분석기 사용
   - 사용자 유연한 검색 제공
   - 검색 필터 기능
 
 * * *
-<img src="https://github.com/user-attachments/assets/3002e538-8f8f-4e23-a34f-9cfeb62a3638" width="450" height="550"/>
+<img src="https://github.com/user-attachments/assets/3002e538-8f8f-4e23-a34f-9cfeb62a3638" width="350" height="450"/>
+
+* * *
+<br><br>
+
+### PortOne API를 활용한 결제 (본인 기여 50%)
+  - 사전 검증, 사후 검증 단계를 거쳐 신뢰성과 무결성 확보
+  - PortOne API 사용
+  - Synchronize, Redis 사용하여 동시성 해결
+
+* * *
+<img src="https://github.com/user-attachments/assets/fa3ea8bc-2616-431b-9b5b-ea9bb439f143" width="350" height="450"/>
 
 * * *
 <br><br><br>

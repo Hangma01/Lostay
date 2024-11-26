@@ -54,6 +54,17 @@
 * * *
 <br><br>
 
+### 결제 (안효준 담당)
+  - 사전 검증, 사후 검증 단계를 거쳐 신뢰성과 무결성 확보
+  - PortOne API 사용
+  - Synchronize, Redis 사용하여 동시성 해결
+
+* * *
+<img src="https://github.com/user-attachments/assets/fa3ea8bc-2616-431b-9b5b-ea9bb439f143" width="450" height="550"/>
+
+* * *
+<br><br>
+
 ### 길찾기
   - Kakao + TMap API 이용한 길찾기
   - 자동차 + 도보 + 대중교통 선택 가능
@@ -72,19 +83,6 @@
 
 * * *
 <img src="https://github.com/user-attachments/assets/3002e538-8f8f-4e23-a34f-9cfeb62a3638" width="450" height="550"/>
-
-* * *
-<br><br>
-
-
- 
-### 결제 (안효준 담당)
-  - 사전 검증, 사후 검증 단계를 거쳐 신뢰성과 무결성 확보
-  - PortOne API 사용
-  - Synchronize, Redis 사용하여 동시성 해결
-
-* * *
-<img src="https://github.com/user-attachments/assets/fa3ea8bc-2616-431b-9b5b-ea9bb439f143" width="450" height="550"/>
 
 * * *
 <br><br><br>

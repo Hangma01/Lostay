@@ -43,6 +43,17 @@
 <br><br><br>
 # :dart: 메인 기능
 
+### 로그인 (안효준 담당)
+  - JWT + Oauth2 사용한 소셜 로그인
+  - coolSms API 이용한 휴대폰 번호 인증
+
+    
+* * *
+<img src="https://github.com/user-attachments/assets/1e19b93b-33b2-41c7-bdac-d7ae9944b659" width="450" height="550"/>
+
+* * *
+<br><br>
+
 ### 길찾기
   - Kakao + TMap API 이용한 길찾기
   - 자동차 + 도보 + 대중교통 선택 가능
@@ -65,16 +76,7 @@
 * * *
 <br><br>
 
-### 로그인 (안효준 담당)
-  - JWT + Oauth2 사용한 소셜 로그인
-  - coolSms API 이용한 휴대폰 번호 인증
 
-    
-* * *
-<img src="https://github.com/user-attachments/assets/1e19b93b-33b2-41c7-bdac-d7ae9944b659" width="450" height="550"/>
-
-* * *
-<br><br>
  
 ### 결제 (안효준 담당)
   - 사전 검증, 사후 검증 단계를 거쳐 신뢰성과 무결성 확보

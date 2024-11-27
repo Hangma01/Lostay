@@ -1,64 +1,21 @@
-# :interrobang: 프로젝트 소개
+## :interrobang: 프로젝트 소개
 교통 데이터를 활용한 호텔 예약 사이트[Lostay]
-<br><br><br>
 
+> 기간 : 2024.10.14~2024.11.08
+> 
+> 팀원 : 5명
+>
+> 
 
-# :date: 프로젝트 기간
-2024.10.14~2024.11.08
-<br><br><br>
+<br><br>
 
-
-# :busts_in_silhouette: 팀원 구성 및 역할 (5명)
-### FrontEnd + BackEnd
-  - 안효준 (본인)
-
-    - 소셜 회원가입/로그인 페이지
-    - 마이 페이지
-    - 결제 페이지
-    - 메인 페이지
-    - 관리자 페이지
-      
-<br>      
-
-  - 박정일
-
-    - 검색 페이지
-    - 관리자 페이지
-    - 이벤트 페이지
-
-<br>      
-
-  - 배교훈
-    
-    - 길찾기 페이지,
-    - 호텔/객실 리스트 페이지 
-
-<br>
-
-### BackEnd
-  - 홍정훈
-    
-    - 마이 페이지
-    - 검색 페이지
-    - 메인 페이지
-    - 관리자 페이지
-   
-<br> 
-
-  - 심재호
-    
-    - 결제 페이지,
-    - 호텔/객실 리스트 페이지 
-<br><br><br>
-
-
-# :seedling: 개발 환경
+## :seedling: 개발 환경
 ### FrontEnd
-- React, React-Router, Redux, JavaScript
+- JavaScript, React, React-Router, Redux 
 
 
 ### Backend
-- Java11, SpringBoot, Spring Security, JPA, MySql 8.0, Redis
+- Java11, SpringBoot, Spring Security, JPA, S3, MySql, Redis
 
 
 ### Collaboration & Tools
@@ -68,47 +25,38 @@
 - Kakao Mobility API, Kakao Map API, TMap API, Elasticesearch API, ProtOne API, coolSms API, OAuth2(Google, Kakao, Naver)
 <br><br><br>
 
-# :bar_chart: ERD
+## :busts_in_silhouette: 담당 역할
+### FrontEnd
+  - 회원가입/로그인 페이지
+  - 결제 페이지
+  - 마이 페이지
+  - 메인 페이지
+  - 관리자 페이지 ( 홈, 호텔 및 객실 수정)
 
-<img src="https://github.com/user-attachments/assets/bbf3b0bb-6ab3-48e5-90a5-8f22ae4fe6ed" width="100%" height="600"/>
-
+### BackEnd
+  - 소셜 회원 가입 / 로그인 기능 [ JWT + OAuth2 + Redis ]
+  - SMS 인증 가능 [ CoolSms API ]
+  - 결제 페이지 이동 [ Synchronize + Redis ]
+  - 결제 사전, 사후 검증 기능 [ PortOne API ]
+  - 관리자 호텔 및 객실 수정 CRUD
+  - 호텔 정보 및 이미지 크롤링
 <br><br><br>
-# :dart: 주요 기능
 
-### 간편 소셜 회원 가입/로그인 (본인 기여 100%)
+## :dart: 주요 기능
+
+### 소셜 회원 가입/로그인
   - JWT + OAuth2 이용한 간편 소셜 로그인
   - coolSms API 이용한 휴대폰 번호 인증
 
     
 * * *
-<img src="https://github.com/user-attachments/assets/1e19b93b-33b2-41c7-bdac-d7ae9944b659" width="350" height="450"/>
+<img src="https://github.com/user-attachments/assets/1e19b93b-33b2-41c7-bdac-d7ae9944b659" width="350" height="450"/>    <img src="https://github.com/user-attachments/assets/0a4bd842-d280-444e-847c-15c919b52b31" width="650" height="450"/>
 
 * * *
 <br><br>
 
-### 길 찾기 기능으로 편리한 교통 정보 확인
-  - Kakao + TMap API 이용한 길찾기
-  - 자동차 + 도보 + 대중교통 선택 가능
-  - 자동차 교통 혼잡도 폴리라인으로 표시
 
-* * *
-<img src="https://github.com/user-attachments/assets/cd1a1bd8-49be-4b75-a2d4-cfeae3bf6720" width="350" height="450"/>
-
-* * *
-<br><br>
-  
-### Elasticsearch를 활용한 유연한 검색
-  - 검색의 정확성과 단어 정제를 위한 Elasticesearch nori 분석기 사용
-  - 사용자 유연한 검색 제공
-  - 검색 필터 기능
-
-* * *
-<img src="https://github.com/user-attachments/assets/3002e538-8f8f-4e23-a34f-9cfeb62a3638" width="350" height="450"/>
-
-* * *
-<br><br>
-
-### PortOne API를 활용한 결제 (본인 기여 50%)
+### PortOne API를 활용한 결제
   - 사전 검증, 사후 검증 단계를 거쳐 신뢰성과 무결성 확보
   - PortOne API 사용
   - Synchronize, Redis 사용하여 동시성 해결
@@ -120,7 +68,7 @@
 <br><br><br>
 
 
-# :gun: 트러블 슈팅
+## :gun: 트러블 슈팅
 
 ### 이미지 최적화
     웹사이트에서 크롤링을 진행한 결과, 이미지 파일 용량이 전체적으로 30GB 이상에 달했다.  
@@ -134,31 +82,6 @@
     최적화 과정에서 품질 80%로 설정하여 눈에 띄지 않는 품질 저하를 방지하면서 용량을 효과적으로 줄였다.
     그 결과, 전체 이미지 용량이 30GB 이상에서 약 6GB로 감소하게 되었다.
     이는 약 80% 이상의 용량 절감을 이루었다.
-<br>
-
-### Elasticesearch
-    DB에 저장된 호텔명과 사용자의 검색어를 직접 대조하는 방식을 사용하면,
-    사용자는 DB에 저장된 값의 형식을 모르기 때문에 원하는 결과를 얻지 못할 가능성이 크다.
-    사용자가 검색어를 입력하는 형식 또한 제한이 없기에,
-    개발자는 사용자가 원하는 검색 결과를 미리 파악하기란 곤란하다.
-
-    이 문제를 조금이나마 개선하기 위해 Elastisearch의 Anaylzer기능을 활용하였다.
-    우선 한글 검색에 대응하기 위해 Elasticsearch에서 공식 지원하는 한글 형태소 분석기 nori 플러그인을 사용하였다.
-    이 API를 활용하여 검색어에서 유의미한 단어(토큰)들의 배열을 얻고,
-    DB에 저장된 호텔명에서 이 토큰을 모두 포함하는 결과를 보여주도록 하였다.
-    
-    이를 통해 검색에서 단어의 순서나 띄어쓰기에 영향을 받지 않고 의도하는 결과를 얻을 수 있었다.
-    다만, 영단어를 한글로 검색할 때 등 일부 형태소가 의도치않게 제거되어 결과의 정확성이 다소 만족스럽지 않기도 하다.
-    TokenFilter를 customizing한 Anayzer를 구축하여 검색의 정확성을 더 높여야 하는 과제가 남아 있다.
-
-<br>
-
-### 길찾기
-    출발지와 도착지의 주소를 입력하면 지오코딩을 이용해 좌표로 바꿔온다.
-    바꾼 좌표를 이용해 카카오모빌리티 길찾기 api, 티맵 도보 api, 티맵 대중교통 api에 요청을 보낸다.
-    받아온 경로를 바탕으로 정보를 제공해준다.
-    자동차 길찾기 같은 경우에는 현재 교통상황을 반영해 색깔을 구분하여 폴리라인을 그려준다.
-
 <br>
 
 ### 동시성

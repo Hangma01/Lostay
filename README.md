@@ -50,7 +50,7 @@
 
     
 * * *
-<img src="https://github.com/user-attachments/assets/1e19b93b-33b2-41c7-bdac-d7ae9944b659" width="350" height="450"/>    <img src="https://github.com/user-attachments/assets/0a4bd842-d280-444e-847c-15c919b52b31" width="600" height="450"/>
+<img src="https://github.com/user-attachments/assets/1e19b93b-33b2-41c7-bdac-d7ae9944b659" width="300" height="450"/>    <img src="https://github.com/user-attachments/assets/0a4bd842-d280-444e-847c-15c919b52b31" width="550" height="450"/>
 
 * * *
 <br><br>

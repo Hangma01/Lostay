@@ -45,7 +45,7 @@
 ## :dart: 담당 주요 기능
 
 ### 소셜 회원 가입/로그인
-  - JWT + OAuth2 이용한 간편 소셜 로그인
+  - JWT + OAuth2 이용한 간편 소셜 로그인 (Naver, Kakao Google)
   - coolSms API 이용한 휴대폰 번호 인증
 
     
@@ -58,8 +58,9 @@
 
 ### PortOne API를 활용한 결제
   - 사전 검증, 사후 검증 단계를 거쳐 신뢰성과 무결성 확보
-  - PortOne API 사용
   - Synchronize, Redis 사용하여 동시성 해결
+  - 포인트, 간편 결제 할인율 적용
+  - PortOne API 사용
 
 * * *
 <img src="https://github.com/user-attachments/assets/fa3ea8bc-2616-431b-9b5b-ea9bb439f143" width="350" height="450"/>

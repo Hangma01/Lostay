@@ -42,7 +42,7 @@
   - 호텔 정보 및 이미지 크롤링
 <br><br><br>
 
-## :dart: 주요 기능
+## :dart: 담당 주요 기능
 
 ### 소셜 회원 가입/로그인
   - JWT + OAuth2 이용한 간편 소셜 로그인
@@ -50,7 +50,7 @@
 
     
 * * *
-<img src="https://github.com/user-attachments/assets/1e19b93b-33b2-41c7-bdac-d7ae9944b659" width="350" height="450"/>    <img src="https://github.com/user-attachments/assets/0a4bd842-d280-444e-847c-15c919b52b31" width="650" height="450"/>
+<img src="https://github.com/user-attachments/assets/1e19b93b-33b2-41c7-bdac-d7ae9944b659" width="350" height="450"/>    <img src="https://github.com/user-attachments/assets/0a4bd842-d280-444e-847c-15c919b52b31" width="600" height="450"/>
 
 * * *
 <br><br>

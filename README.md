@@ -22,15 +22,15 @@
 
 # :seedling: 개발 환경
 ### FrontEnd
-- React, React-Router, Redux, CRA
+- JavaScript, React
 
 
 ### Backend
-- Java11, SpringBoot, Spring Security, JPA, MySql 8.0, Redis
+- SpringBoot, Spring Security, JPA, MySql 8.0, Redis, EC2, S3
 
 
 ### 협업 Tool
-- Github
+- Github, Postman, Jira, Figma
 
 ### ETC
 - Kakao Mobility API, Kakao Map API, TMap API, Elasticesearch API, PortOne API, coolSms API, OAuth2(Google, Kakao, Naver)
@@ -66,8 +66,9 @@
 <br><br>
 
 ### 로그인
-  - JWT + Oauth2 사용한 소셜 로그인
-  - coolSms API 이용한 휴대폰 번호 인증
+  - JWT + Oauth 2.0 + Redis 사용한 사용자 인증 구현
+  - Spring Security를 활용한 경로 별 접근 허용
+  - coolSms API 사용해 휴대폰 번호 인증
 
     
 * * *

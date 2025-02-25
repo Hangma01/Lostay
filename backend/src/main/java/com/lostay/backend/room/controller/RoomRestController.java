@@ -45,7 +45,6 @@ public class RoomRestController {
 	}
 
 	// 해당 객실에 대한 정보 조회
-
 	@GetMapping("/RoomDetail")//변경전: /RoomDetail 변경후:/room/RoomDetail
 	public ResponseEntity<?> roomdetail(@RequestParam(defaultValue = "1") Long roomNo,
 			@RequestParam(defaultValue = "2024-11-30T15:00:00") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime checkInDate,
@@ -55,25 +54,19 @@ public class RoomRestController {
 		return new ResponseEntity<>(roomSer.findRoomInfo(roomNo, checkInDate, checkOutDate, peopleMax), HttpStatus.OK);
 
 	}
+	
 	// 디비 락
 	// 예약자가 비슷한 시간에 예약을 하려 할 때 먼저 들어온 사람이 있으면
 	// 후에 들어오는 사람을 막는 메소드
 	@Synchronized
 	@PostMapping("/Reservation")
 	public ResponseEntity<?> reservationsyncronized(@RequestBody RoomCheckDTO dto) {
-		System.out.println(dto.toString());
+		
 		Long count = roomSer.findAvailableCount(dto);
 		int RedisHumanCount = roomSer.findRedisHumanCount(dto);
 		JSONObject Body = new JSONObject();
 		
-		System.out.println("이용 가능한 객실 : " + count);
-		System.out.println("레디스에 들어와있는 인원수 : " + RedisHumanCount);
-		System.out.println("체크인" +dto.getCheckInDay());
-		System.out.println("체크아웃" + dto.getCheckOutDay());
-		
 		if (count <= RedisHumanCount) {
-			System.out.println("예약마감");
-		
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}else {
 			
@@ -83,16 +76,9 @@ public class RoomRestController {
 			
 			RoomCheckDTO roomdto = new RoomCheckDTO();
 			
+			roomdto = roomSer.RedisSave(roomNo, in, out);
 			
-				roomdto = roomSer.RedisSave(roomNo, in, out);
-				System.out.println(roomdto);
-				System.out.println("예약가능");
-			
-				return new ResponseEntity<>(roomdto.getRid(), HttpStatus.OK);
-
-			}
-
-				
+			return new ResponseEntity<>(roomdto.getRid(), HttpStatus.OK);
+		}
 	}
-
 }

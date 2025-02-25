@@ -90,17 +90,7 @@ public class ReissueController {
 
 		// 새로 발급할 토큰 생성
 		String newAccess = jwtUtil.createJwt("access", username, role, userNo, accessTkExpired);
-		String newRefresh = jwtUtil.createJwt("refresh", username, role, userNo, refreshTkExpired);
-
-		System.out.println("기존 리프레쉬 토큰" + refresh);
-		System.out.println("새로운 리프레쉬 토큰" + newRefresh);
-
-		// Refresh 토큰 저장 DB에 기존의 Refresh 토큰 삭제 후 새 Refresh 토큰 저장
-//		String userProviderId = refreshTokenService.getKey(newRefresh);
-//		
-//		RefreshTokenDTO refreshTokenDTO = new RefreshTokenDTO();
-//		refreshTokenDTO.setUserProviderId(userProviderId);
-//		refreshTokenDTO.setRefreshToken(newRefresh);			
+		String newRefresh = jwtUtil.createJwt("refresh", username, role, userNo, refreshTkExpired);	
 
 		refreshTokenService.update(refresh, newRefresh, userNo);
 

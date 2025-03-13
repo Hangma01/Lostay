@@ -165,8 +165,6 @@ public class PaymentService {
 
 			po = poRepo.save(newPoint);
 		}
-		// 0이면 적립, 1이면 사용
-//		newPoint.setStatus(1);
 
 		// 객실에 관련된 정보 결제테이블에 외래키로 넣어주기
 		Optional<Room> newRoom = roomRepo.findById(dto.getRoomNo());
@@ -180,10 +178,7 @@ public class PaymentService {
 		Discount discount = disRepo.findById(dto.getDisNo()).get();
 		savePay.setPayType(discount.getDisCategory());
 		savePay.setPayDay(dto.getPayDay());
-//		int roomPrice = room.getRoomPrice();
-//		int roomDiscount = room.getRoomDiscount();
-//		int discountPrice = (int)roomPrice - roomPrice * roomDiscount/100;
-//		savePay.setDisPrice(discountPrice);
+		
 		// 실제 결제 가격
 		savePay.setPayPrice(dto.getPayPrice());
 		savePay.setPayPoint(dto.getPayPoint());
@@ -207,11 +202,7 @@ public class PaymentService {
 		reservation.setResStatus("Y");
 
 		Reservation r = resRepo.save(reservation);
-		System.out.println("payno" + p.getPayNo());
-		System.out.println("reservationNO" + r.getReservationNo());
-		System.out.println("POINTNO" + po.getPointNo());
-		System.out.println("USERNO" + u.getUserNo());
-
+		
 		if (dto.getPayPoint() > 0) {
 			if (p.getPayNo() != null & r.getReservationNo() != null & u.getUserNo() != null & po.getPointNo() != null) {
 				return true;
@@ -275,8 +266,6 @@ public class PaymentService {
 			long period = ChronoUnit.DAYS.between(checkIn.toLocalDate(), checkOut.toLocalDate());
 			
 			int discountPrice = (room.getRoomPrice() - (room.getRoomPrice() * room.getRoomDiscount() / 100))* (int)period;
-			
-			
 
 			Discount discount = disRepo.findById(disNo).get();
 

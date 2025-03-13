@@ -52,11 +52,11 @@ public class PaymentController {
 
 	private IamportClient iamportClient;
 
-    @Value("${imp.api.key}")
-    private String apiKey;
+    	@Value("${imp.api.key}")
+    	private String apiKey;
     
-    @Value("${imp.api.secretKey}")
-    private String secretKey;
+    	@Value("${imp.api.secretKey}")
+    	private String secretKey;
 	
 	
 	@Autowired
@@ -69,8 +69,7 @@ public class PaymentController {
 	// 결제 내역
 	@GetMapping("/History")//변경전: PaymentHistory 변경후:/payment/History
 	public ResponseEntity<?> paymenthistory(@RequestParam(defaultValue = "3") Long payNo){
-
-		
+	
 		return new ResponseEntity<>(paySer.findPayHistory(payNo),HttpStatus.OK);
 	}
 	
@@ -80,29 +79,24 @@ public class PaymentController {
 	public ResponseEntity<?> hotelroominfo(@AuthenticationPrincipal CustomOAuth2User customOAuth2User
 										  ,@RequestParam(defaultValue = "6") Long roomNo
 										  ,@RequestParam(defaultValue = "2024-12-03") 
-    									   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate checkInDate
-    									  ,@RequestParam(defaultValue = "2024-12-05") 
-										   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate checkOutDate){
+    									  	  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate checkInDate
+    									  	  ,@RequestParam(defaultValue = "2024-12-05") 
+										  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate checkOutDate){
 			
-		
-		
-		return new ResponseEntity<>(paySer.findRoomInfo(roomNo,checkInDate,checkOutDate),HttpStatus.OK);
+		return new ResponseEntity<>(paySer.findRoomInfo(roomNo,checkInDate,checkOutDate),HttpStatus.OK);		
+	}
+
+	
+	// 결제 진행 페이지 유저 정보 <결제정보에서 보유 포인트에서도 사용>
+	@GetMapping("/UserInfo")//변경전: UserInfo 변경후:/payment/UserInfo
+	public ResponseEntity<?> userinfo(@AuthenticationPrincipal CustomOAuth2User customOAuth2User){
 			
+		Long userNo = customOAuth2User.getUserNo();
+		
+		return new ResponseEntity<>(paySer.findUserInfo(userNo),HttpStatus.OK);		
 	}
 	
 	
-	// 결제 진행 페이지 유저 정보 <결제정보에서 보유 포인트에서도 사용>
-		@GetMapping("/UserInfo")//변경전: UserInfo 변경후:/payment/UserInfo
-		public ResponseEntity<?> userinfo(@AuthenticationPrincipal CustomOAuth2User customOAuth2User){
-				
-			Long userNo = customOAuth2User.getUserNo();
-			
-			return new ResponseEntity<>(paySer.findUserInfo(userNo),HttpStatus.OK);
-				
-		}
-	
-	
-		
 	// 사전검증
 	@PostMapping("/Before")//변경전: /Payment/Before 변경후:/payment/Before
 	private ResponseEntity<?> paymentbefore(@AuthenticationPrincipal CustomOAuth2User customOAuth2User
@@ -157,14 +151,14 @@ public class PaymentController {
 			 return new ResponseEntity<>(HttpStatus.OK);
 			 
 		} catch (JSONException e) {
-	        return ResponseEntity
-	                .status(HttpStatus.BAD_REQUEST)
-	                .body("JSON 파싱 오류: " + e.getMessage());
+	        	return ResponseEntity
+	                	.status(HttpStatus.BAD_REQUEST)
+	                	.body("JSON 파싱 오류: " + e.getMessage());
 	                
 	        } catch (IOException | InterruptedException e) {
-	            return ResponseEntity
-	                .status(HttpStatus.INTERNAL_SERVER_ERROR)
-	                .body("API 호출 중 오류 발생: " + e.getMessage());
+	            	return ResponseEntity
+	                	.status(HttpStatus.INTERNAL_SERVER_ERROR)
+	                	.body("API 호출 중 오류 발생: " + e.getMessage());
 	        }
 	
 	}
@@ -172,7 +166,7 @@ public class PaymentController {
 		
 	// 사후검증	
 	@PostMapping("/Verification")//변경전: /Payment/Verification 변경후:/payment/Verification
-	  private IamportResponse<Payment> paymentByImpUid(@RequestBody PaymentVerificationDTO payDTO) throws IamportResponseException,IOException {
+	private IamportResponse<Payment> paymentByImpUid(@RequestBody PaymentVerificationDTO payDTO) throws IamportResponseException,IOException {
 		 iamportClient = new IamportClient(apiKey, secretKey);
 		 
         return iamportClient.paymentByImpUid(payDTO.getImp_uid());
@@ -184,24 +178,24 @@ public class PaymentController {
 	public ResponseEntity<?> paymentinsert(@AuthenticationPrincipal CustomOAuth2User customOAuth2User
 							 ,@RequestBody PaymentDTO dto){
 
-			Long count = paySer.findAvailableCount(dto);
-			if(count <= 0) {
-				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-			}
-		
-			Long userNo = customOAuth2User.getUserNo();
-			
-			Boolean result = paySer.savePayment(userNo,dto);
-			
-			if(result) {
-				
-				paySer.deleteRedis(dto.getRid());
-				return new ResponseEntity<>(HttpStatus.OK);
-			}else {
-				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-			}
-			
+		Long count = paySer.findAvailableCount(dto);
+		if(count <= 0) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
+	
+		Long userNo = customOAuth2User.getUserNo();
+		
+		Boolean result = paySer.savePayment(userNo,dto);
+		
+		if(result) {
+			
+			paySer.deleteRedis(dto.getRid());
+			return new ResponseEntity<>(HttpStatus.OK);
+		}else {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		
+	}
 	
 	// 결제 취소
 	@PostMapping("/Cancle")//변경전: /PaymentCancle 변경후:/payment/Cancle
@@ -216,60 +210,54 @@ public class PaymentController {
 				    .method("POST", HttpRequest.BodyPublishers.ofString(String.format("{\"imp_key\":\"%s\",\"imp_secret\":\"%s\"}", apiKey, secretKey)))
 				    .build();
 		
-		 HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
-		 
-		 if(response.statusCode() != 200) {
-			 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		 }else {
-			 System.out.println("토큰 발급 성공");
-		 }
-		 
-		 
-		 JSONObject jsonResponse = new JSONObject(response.body());
-		 
-		 // jsonObject에서 response 안에 있는 access토큰 문자열로 받아오기
-		 String accessToken = jsonResponse.getJSONObject("response").getString("access_token");
-		 
-		 String uid = paySer.findUid(payNo);
-		 
-		// 취소 요청
-		 HttpRequest cancel_request = HttpRequest.newBuilder()
-					.uri(URI.create("https://api.iamport.kr/payments/cancel"))
-					.header("Content-Type", "application/json")
-					.header("Authorization", "Bearer " + accessToken)
-					.method("POST", HttpRequest.BodyPublishers.ofString(String.format("{\"imp_uid\":\"%s\"}", uid))).build();
-		 
-		 
-	     // 취소 요청 응답 확인
-		 HttpResponse<String> cancelResponse = HttpClient.newHttpClient().send(cancel_request, HttpResponse.BodyHandlers.ofString());
-		 
-	       
-	       if (cancelResponse.statusCode() != 200) {
-	            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-	        } else {
-	            Long userNo = customOAuth2User.getUserNo();
-	            paySer.canclePayment(payNo,userNo);
-	            return new ResponseEntity<>(HttpStatus.OK);
-	            
-	        }
-	       
-	       
-	       
+			HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+			 
+			if(response.statusCode() != 200) {
+				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			}else {
+				System.out.println("토큰 발급 성공");
+			}
+			 
+			 
+			JSONObject jsonResponse = new JSONObject(response.body());
+			 
+			// jsonObject에서 response 안에 있는 access토큰 문자열로 받아오기
+			String accessToken = jsonResponse.getJSONObject("response").getString("access_token");
+			 
+			String uid = paySer.findUid(payNo);
+			 
+			// 취소 요청
+			HttpRequest cancel_request = HttpRequest.newBuilder()
+						.uri(URI.create("https://api.iamport.kr/payments/cancel"))
+						.header("Content-Type", "application/json")
+						.header("Authorization", "Bearer " + accessToken)
+						.method("POST", HttpRequest.BodyPublishers.ofString(String.format("{\"imp_uid\":\"%s\"}", uid))).build();
+			 
+			 
+		     	// 취소 요청 응답 확인
+			HttpResponse<String> cancelResponse = HttpClient.newHttpClient().send(cancel_request, HttpResponse.BodyHandlers.ofString());
+			 
+		       
+		       	if (cancelResponse.statusCode() != 200) {
+		        	return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		        } else {
+		            	Long userNo = customOAuth2User.getUserNo();
+		            	paySer.canclePayment(payNo,userNo);
+		            	return new ResponseEntity<>(HttpStatus.OK);
+		        }
 		} catch (IOException e) {
-	        e.printStackTrace();
-	        return new ResponseEntity<>("Network error occurred", HttpStatus.INTERNAL_SERVER_ERROR);
-	    } catch (InterruptedException e) {
-	        Thread.currentThread().interrupt();
-	        return new ResponseEntity<>("Request interrupted", HttpStatus.INTERNAL_SERVER_ERROR);
-	    } catch (JSONException e) {
-	        e.printStackTrace();
-	        return new ResponseEntity<>("Invalid JSON format in response", HttpStatus.BAD_REQUEST);
-	    } catch (RuntimeException e) {
-	        e.printStackTrace();
-	        return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+	        	e.printStackTrace();
+	        	return new ResponseEntity<>("Network error occurred", HttpStatus.INTERNAL_SERVER_ERROR);
+	    	} catch (InterruptedException e) {
+	        	Thread.currentThread().interrupt();
+	        	return new ResponseEntity<>("Request interrupted", HttpStatus.INTERNAL_SERVER_ERROR);
+	    	} catch (JSONException e) {
+	        	e.printStackTrace();
+	        	return new ResponseEntity<>("Invalid JSON format in response", HttpStatus.BAD_REQUEST);
+	    	} catch (RuntimeException e) {
+	        	e.printStackTrace();
+	        	return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 	    }
-			
-	
 	}
 	
 	
@@ -313,27 +301,26 @@ public class PaymentController {
 		HttpResponse<String> cancelResponse = HttpClient.newHttpClient().send(cancel_request, HttpResponse.BodyHandlers.ofString());
 		 
 	       
-	       if (cancelResponse.statusCode() != 200) {
-		    return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		if (cancelResponse.statusCode() != 200) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		} else {
-
-		    return new ResponseEntity<>(HttpStatus.OK);
+			return new ResponseEntity<>(HttpStatus.OK);
 		}
 	       
 	       
 	       
 		} catch (IOException e) {
-		e.printStackTrace();
-		return new ResponseEntity<>("Network error occurred", HttpStatus.INTERNAL_SERVER_ERROR);
+			e.printStackTrace();
+			return new ResponseEntity<>("Network error occurred", HttpStatus.INTERNAL_SERVER_ERROR);
 		} catch (InterruptedException e) {
-		Thread.currentThread().interrupt();
-		return new ResponseEntity<>("Request interrupted", HttpStatus.INTERNAL_SERVER_ERROR);
+			Thread.currentThread().interrupt();
+			return new ResponseEntity<>("Request interrupted", HttpStatus.INTERNAL_SERVER_ERROR);
 		} catch (JSONException e) {
-		e.printStackTrace();
-		return new ResponseEntity<>("Invalid JSON format in response", HttpStatus.BAD_REQUEST);
+			e.printStackTrace();
+			return new ResponseEntity<>("Invalid JSON format in response", HttpStatus.BAD_REQUEST);
 		} catch (RuntimeException e) {
-		e.printStackTrace();
-		return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+			e.printStackTrace();
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 }

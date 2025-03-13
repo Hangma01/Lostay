@@ -24,8 +24,7 @@ public class SmsController {
 	
 	@PostMapping("/loginPhone/{phonenum}")//변경전: /loginPhone/{phonenum} 변경후:/sms/loginPhone/{phonenum}
 	public ResponseEntity<?> loginPhone(@PathVariable("phonenum") String phoneNum) {
-		System.out.println("loginPhone Controller 탐");
-		System.out.println("phoneNum"+phoneNum);
+		
 		return new ResponseEntity<>(smsService.sendSms(phoneNum),HttpStatus.OK);
 	}
 }

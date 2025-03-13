@@ -45,7 +45,7 @@ public class ReservationService {
 		
 			LocalDateTime checkInDate = dto.getCheckIn();
 		    
-		    // 체크인 날짜로부터 1일 전의 날짜
+		        // 체크인 날짜로부터 1일 전의 날짜
 			LocalDate cancleRoomDeadline = checkInDate.toLocalDate();
 		    
 		    // 현재 시간이 체크인 날짜 1루 전인지 값 넣기
@@ -58,7 +58,7 @@ public class ReservationService {
 			bookHistoryDTO.setIsWriteReview(false);
 			bookHistoryDTO.setIsPayCancel(false);
 			
-	        bookHistoryList.add(bookHistoryDTO);
+	            bookHistoryList.add(bookHistoryDTO);
 		
 		}
 		return bookHistoryList;
@@ -91,23 +91,23 @@ public class ReservationService {
 			if ("N".equals(dto.getResReviewStatus())) {
 				LocalDate checkInDate = dto.getCheckIn().toLocalDate();
 			    
-			    // 체크인 날짜로부터 7일 후의 날짜
-			    LocalDate reviewDeadline = checkInDate.plusDays(7);
-			    
-			    // 현재 시간이 체크인 날짜와 7일 후 날짜 사이인지 확인
-			    if (!LocalDate.now().isAfter(reviewDeadline)) {
-			        bookHistoryDTO.setIsWriteReview(true);
-			    } else {
-			        bookHistoryDTO.setIsWriteReview(false);
-			    }
-	        } else {
-	        	bookHistoryDTO.setIsWriteReview(false);
-	        }
+				// 체크인 날짜로부터 7일 후의 날짜
+				LocalDate reviewDeadline = checkInDate.plusDays(7);
+				
+				// 현재 시간이 체크인 날짜와 7일 후 날짜 사이인지 확인
+				if (!LocalDate.now().isAfter(reviewDeadline)) {
+				bookHistoryDTO.setIsWriteReview(true);
+				} else {
+				bookHistoryDTO.setIsWriteReview(false);
+				}
+		        } else {
+		        	bookHistoryDTO.setIsWriteReview(false);
+		        }
 			
 			bookHistoryDTO.setIsRoomCancle(false);
 			bookHistoryDTO.setIsPayCancel(false);
 			
-	        bookHistoryList.add(bookHistoryDTO);
+			bookHistoryList.add(bookHistoryDTO);
 		}
 		
 		

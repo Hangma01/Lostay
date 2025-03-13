@@ -38,9 +38,9 @@ public class RefreshTokenService {
 	// 생성
 	public void create(RefreshTokenDTO refreshTokenDTO) {
 		RefreshToken refreshTokenEntity = RefreshToken.builder()
-										    .userProviderId(refreshTokenDTO.getUserProviderId())
-										    .refreshToken(refreshTokenDTO.getRefreshToken())
-										    .build();
+							    .userProviderId(refreshTokenDTO.getUserProviderId())
+							    .refreshToken(refreshTokenDTO.getRefreshToken())
+							    .build();
 									
 		redisRepo.save(refreshTokenEntity);
 	}
@@ -48,9 +48,9 @@ public class RefreshTokenService {
 	// 어드민 토큰 생성
 	public void create(AdminRefreshTokenDTO adminRefreshTokenDTO) {
 		AdminRefreshToken adminRefreshTokenEntity = AdminRefreshToken.builder()
-												.adminId(adminRefreshTokenDTO.getAdminId())
-												.refreshToken(adminRefreshTokenDTO.getRefreshToken())
-												.build();
+									.adminId(adminRefreshTokenDTO.getAdminId())
+									.refreshToken(adminRefreshTokenDTO.getRefreshToken())
+									.build();
 		adminRedisRepo.save(adminRefreshTokenEntity);
 	}
 	
@@ -75,10 +75,11 @@ public class RefreshTokenService {
 		Optional<AdminRefreshToken> existingToken = adminRedisRepo.findByRefreshToken(refreshToken); 
 		
 		if (existingToken.isPresent()) {
-	        // 값이 있을 때
+	        	// 값이 있을 때
 			AdminRefreshToken token = existingToken.get();
-	        return token.getAdminId(); // 실제 키 반환
-	    } 
+			
+	        	return token.getAdminId(); // 실제 키 반환
+	    	} 
 	      
 	    return null;
 	}
@@ -113,9 +114,9 @@ public class RefreshTokenService {
 			User user = result.get();
 			
 			RefreshToken reRefreshToken = RefreshToken.builder()
-														.userProviderId(user.getUserProviderId())
-														.refreshToken(newRefreshToken)
-														.build();
+								.userProviderId(user.getUserProviderId())
+								.refreshToken(newRefreshToken)
+								.build();
 			redisRepo.save(reRefreshToken);
 		}
 	}
@@ -134,9 +135,9 @@ public class RefreshTokenService {
 				Admin admin = result.get();
 				
 				AdminRefreshToken adminRefreshToken = AdminRefreshToken.builder()
-															.adminId(admin.getAdminId())
-															.refreshToken(newRefreshToken)
-															.build();
+											.adminId(admin.getAdminId())
+											.refreshToken(newRefreshToken)
+											.build();
 				adminRedisRepo.save(adminRefreshToken);
 			}
 		}

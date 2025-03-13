@@ -95,7 +95,6 @@ public class ReissueController {
 		refreshTokenService.update(refresh, newRefresh, userNo);
 
 		// 응답 설정
-		// response.setHeader("Access-Control-Expose-Headers", "access");
 		response.setHeader("Authorization", "Bearer " + newAccess);
 		response.addCookie(createCookie("refresh", newRefresh));
 
